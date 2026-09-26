@@ -1,0 +1,90 @@
+/* The vault fingerprint. Shared by every surface that shows it. */
+
+.rosette path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.rosette-ring path {
+  stroke: var(--rosette-ring);
+  stroke-width: 0.6;
+  opacity: 0.65;
+}
+
+.rosette-a path {
+  stroke: var(--rosette-a);
+  stroke-width: 0.55;
+  opacity: 0.85;
+}
+
+.rosette-b path {
+  stroke: var(--rosette-b);
+  stroke-width: 0.6;
+  opacity: 0.8;
+}
+
+/* At badge sizes a dense interlace fills in to a solid disc, the way fine
+   linework does when printed too small: only the body and border print. */
+.rosette[data-size='small'] .rosette-a path,
+.rosette[data-size='small'] .rosette-ring path {
+  stroke-width: 1;
+}
+
+.rosette[data-size='small'] .rosette-b {
+  display: none;
+}
+
+.rosette[data-size='small'] .rosette-ring path {
+  opacity: 0.85;
+}
+
+.rosette g {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  transition: transform 460ms var(--ease-out);
+}
+
+.rosette[data-state='locked'] .rosette-b,
+.rosette[data-state='deriving'] .rosette-b,
+.rosette[data-state='knock'] .rosette-b {
+  transform: rotate(9deg) scale(0.965);
+}
+
+.rosette[data-state='locked'] .rosette-a,
+.rosette[data-state='deriving'] .rosette-a,
+.rosette[data-state='knock'] .rosette-a {
+  transform: rotate(-4deg);
+}
+
+.rosette[data-state='deriving'] .rosette-b {
+  animation: rosette-derive 1.8s ease-in-out infinite;
+}
+
+.rosette[data-state='knock'] .rosette-b {
+  animation: rosette-knock 400ms var(--ease-out);
+}
+
+@keyframes rosette-derive {
+  0%,
+  100% {
+    transform: rotate(9deg) scale(0.965);
+  }
+  50% {
+    transform: rotate(4deg) scale(0.985);
+  }
+}
+
+@keyframes rosette-knock {
+  0% {
+    transform: rotate(9deg) scale(0.965);
+  }
+  28% {
+    transform: rotate(17deg) scale(0.95);
+  }
+  62% {
+    transform: rotate(3deg) scale(0.975);
+  }
+  100% {
+    transform: rotate(9deg) scale(0.965);
+  }
+}

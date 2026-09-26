@@ -1,0 +1,125 @@
+/*
+ * Security Print.
+ * Plate-ink ground is the primary rendition; cotton security paper follows the OS.
+ * One control ink (optically variable: emerald shifting toward blue) marks the next action.
+ * Numbering red marks copies, unsaved revisions, health problems and destructive actions.
+ * Six denomination inks name entry types, always as words.
+ */
+
+:root {
+  color-scheme: dark;
+
+  --plate: oklch(0.145 0.014 222);
+  --ground: oklch(0.168 0.015 222);
+  --paper: oklch(0.192 0.016 218);
+  --raised: oklch(0.235 0.018 218);
+  --raised-2: oklch(0.27 0.02 216);
+  --sunken: oklch(0.13 0.013 222);
+  --line: oklch(0.285 0.017 218);
+  --line-strong: oklch(0.375 0.02 216);
+
+  --ink: oklch(0.94 0.012 170);
+  --ink-2: oklch(0.8 0.016 195);
+  --ink-3: oklch(0.67 0.02 205);
+  --underprint: oklch(0.56 0.045 200);
+
+  --control: oklch(0.82 0.13 165);
+  --control-shift: oklch(0.8 0.115 205);
+  --control-soft: oklch(0.82 0.13 165 / 0.14);
+  --on-control: oklch(0.18 0.035 190);
+
+  --numbering: oklch(0.71 0.165 30);
+  --numbering-soft: oklch(0.71 0.165 30 / 0.14);
+  --caution: oklch(0.84 0.125 78);
+
+  --ink-login: oklch(0.8 0.09 128);
+  --ink-ssh: oklch(0.79 0.095 245);
+  --ink-apiKey: oklch(0.79 0.1 300);
+  --ink-note: oklch(0.81 0.085 70);
+  --ink-card: oklch(0.79 0.1 352);
+  --ink-identity: oklch(0.81 0.06 205);
+
+  --rosette-a: oklch(0.78 0.03 195);
+  --rosette-b: oklch(0.82 0.13 165);
+  --rosette-ring: oklch(0.56 0.045 200);
+
+  --shadow-pop: 0 18px 40px -12px oklch(0.04 0.01 220 / 0.75), 0 3px 10px -2px oklch(0.04 0.01 220 / 0.55);
+
+  --font-ui: 'Atkinson Hyperlegible Next', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Atkinson Hyperlegible Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --t-11: 0.6875rem;
+  --t-12: 0.75rem;
+  --t-13: 0.8125rem;
+  --t-14: 0.875rem;
+  --t-16: 1rem;
+  --t-20: 1.25rem;
+  --t-26: 1.625rem;
+
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+
+  --r-1: 3px;
+  --r-2: 5px;
+
+  --bar: 44px;
+  --rail: 232px;
+  --index: 392px;
+  --label-col: 116px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --fast: 150ms;
+  --med: 200ms;
+}
+
+/*
+ * The plate ink above is the default rendition. The renderer stamps
+ * data-theme on <html> from the app's own setting — resolving "system" through
+ * matchMedia — because Electron's nativeTheme.themeSource does not reach the
+ * page's prefers-color-scheme reliably.
+ */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* Cotton security paper: warm and slightly toothy, printed in cold intaglio ink. */
+  --plate: oklch(0.898 0.023 88);
+  --ground: oklch(0.941 0.019 90);
+  --paper: oklch(0.971 0.014 92);
+  --raised: oklch(0.888 0.025 88);
+  --raised-2: oklch(0.856 0.029 86);
+  --sunken: oklch(0.954 0.014 92);
+  --line: oklch(0.84 0.023 88);
+  --line-strong: oklch(0.72 0.027 86);
+
+  --ink: oklch(0.22 0.03 240);
+  --ink-2: oklch(0.365 0.028 232);
+  --ink-3: oklch(0.455 0.025 226);
+  --underprint: oklch(0.6 0.05 198);
+
+  --control: oklch(0.43 0.1 165);
+  --control-shift: oklch(0.41 0.095 212);
+  --control-soft: oklch(0.43 0.1 165 / 0.13);
+  --on-control: oklch(0.982 0.012 92);
+
+  --numbering: oklch(0.45 0.185 30);
+  --numbering-soft: oklch(0.45 0.185 30 / 0.1);
+  --caution: oklch(0.43 0.11 68);
+
+  --ink-login: oklch(0.44 0.1 132);
+  --ink-ssh: oklch(0.43 0.11 250);
+  --ink-apiKey: oklch(0.44 0.12 300);
+  --ink-note: oklch(0.45 0.09 62);
+  --ink-card: oklch(0.45 0.13 355);
+  --ink-identity: oklch(0.44 0.07 210);
+
+  --rosette-a: oklch(0.42 0.035 220);
+  --rosette-b: oklch(0.52 0.105 165);
+  --rosette-ring: oklch(0.66 0.04 200);
+
+  --shadow-pop: 0 18px 40px -14px oklch(0.25 0.03 230 / 0.28), 0 3px 10px -3px oklch(0.25 0.03 230 / 0.18);
+}

@@ -1,0 +1,20 @@
+node_modules/
+out/
+dist/
+*.tsbuildinfo
+.impeccable/review/
+*.log
+.DS_Store
+
+# Never commit real vaults or key material. The KeePass databases under
+# tests/fixtures/ are published test data and are deliberately kept.
+*.pvault
+*.kdb
+*.kdbx
+*.key
+*.pem
+id_rsa
+id_ed25519
+.env
+.env.*
+!tests/fixtures/**

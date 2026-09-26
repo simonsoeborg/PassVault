@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-12T00:00:00Z",
+  "title": "Design System: PassVault",
+  "extensions": {
+    "colorMeta": {
+      "plate": {
+        "role": "neutral",
+        "displayName": "Plate Ink",
+        "canonical": "oklch(0.145 0.014 222)",
+        "lightRendition": "oklch(0.898 0.023 88)",
+        "tonalRamp": ["oklch(0.15 0.014 222)", "oklch(0.25 0.014 222)", "oklch(0.35 0.014 222)", "oklch(0.45 0.014 222)", "oklch(0.56 0.014 222)", "oklch(0.68 0.014 222)", "oklch(0.82 0.014 222)", "oklch(0.95 0.014 222)"]
+      },
+      "ground": {
+        "role": "neutral",
+        "displayName": "Plate Ground",
+        "canonical": "oklch(0.168 0.015 222)",
+        "lightRendition": "oklch(0.941 0.019 90)",
+        "tonalRamp": ["oklch(0.15 0.015 222)", "oklch(0.25 0.015 222)", "oklch(0.35 0.015 222)", "oklch(0.45 0.015 222)", "oklch(0.56 0.015 222)", "oklch(0.68 0.015 222)", "oklch(0.82 0.015 222)", "oklch(0.95 0.015 222)"]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Sheet",
+        "canonical": "oklch(0.192 0.016 218)",
+        "lightRendition": "oklch(0.971 0.014 92)",
+        "tonalRamp": ["oklch(0.15 0.016 218)", "oklch(0.25 0.016 218)", "oklch(0.35 0.016 218)", "oklch(0.45 0.016 218)", "oklch(0.56 0.016 218)", "oklch(0.68 0.016 218)", "oklch(0.82 0.016 218)", "oklch(0.95 0.016 218)"]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Raised Ink",
+        "canonical": "oklch(0.235 0.018 218)",
+        "lightRendition": "oklch(0.888 0.025 88)",
+        "tonalRamp": ["oklch(0.15 0.018 218)", "oklch(0.25 0.018 218)", "oklch(0.35 0.018 218)", "oklch(0.45 0.018 218)", "oklch(0.56 0.018 218)", "oklch(0.68 0.018 218)", "oklch(0.82 0.018 218)", "oklch(0.95 0.018 218)"]
+      },
+      "raised-2": {
+        "role": "neutral",
+        "displayName": "Selected Ink",
+        "canonical": "oklch(0.27 0.02 216)",
+        "lightRendition": "oklch(0.856 0.029 86)"
+      },
+      "sunken": {
+        "role": "neutral",
+        "displayName": "Sunken Well",
+        "canonical": "oklch(0.13 0.013 222)",
+        "lightRendition": "oklch(0.954 0.014 92)"
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline Rule",
+        "canonical": "oklch(0.285 0.017 218)",
+        "lightRendition": "oklch(0.84 0.023 88)"
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Plate Edge",
+        "canonical": "oklch(0.375 0.02 216)",
+        "lightRendition": "oklch(0.72 0.027 86)"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Full Ink",
+        "canonical": "oklch(0.94 0.012 170)",
+        "lightRendition": "oklch(0.22 0.03 240)",
+        "tonalRamp": ["oklch(0.15 0.012 170)", "oklch(0.25 0.012 170)", "oklch(0.35 0.012 170)", "oklch(0.45 0.012 170)", "oklch(0.56 0.012 170)", "oklch(0.68 0.012 170)", "oklch(0.82 0.012 170)", "oklch(0.95 0.012 170)"]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Second Ink",
+        "canonical": "oklch(0.8 0.016 195)",
+        "lightRendition": "oklch(0.365 0.028 232)"
+      },
+      "ink-3": {
+        "role": "neutral",
+        "displayName": "Label Ink",
+        "canonical": "oklch(0.67 0.02 205)",
+        "lightRendition": "oklch(0.455 0.025 226)"
+      },
+      "underprint": {
+        "role": "neutral",
+        "displayName": "Underprint Line",
+        "canonical": "oklch(0.56 0.045 200)",
+        "lightRendition": "oklch(0.6 0.05 198)"
+      },
+      "control": {
+        "role": "primary",
+        "displayName": "Optically Variable Control Ink",
+        "canonical": "oklch(0.82 0.13 165)",
+        "lightRendition": "oklch(0.43 0.1 165)",
+        "tonalRamp": ["oklch(0.18 0.13 165)", "oklch(0.29 0.13 165)", "oklch(0.4 0.13 165)", "oklch(0.51 0.13 165)", "oklch(0.62 0.13 165)", "oklch(0.72 0.13 165)", "oklch(0.82 0.13 165)", "oklch(0.93 0.09 165)"]
+      },
+      "control-shift": {
+        "role": "primary",
+        "displayName": "Control Ink, Shifted",
+        "canonical": "oklch(0.8 0.115 205)",
+        "lightRendition": "oklch(0.41 0.095 212)"
+      },
+      "control-soft": {
+        "role": "primary",
+        "displayName": "Control Wash",
+        "canonical": "oklch(0.82 0.13 165 / 0.14)",
+        "lightRendition": "oklch(0.43 0.1 165 / 0.13)"
+      },
+      "on-control": {
+        "role": "primary",
+        "displayName": "Ink On Control",
+        "canonical": "oklch(0.18 0.035 190)",
+        "lightRendition": "oklch(0.982 0.012 92)"
+      },
+      "numbering": {
+        "role": "secondary",
+        "displayName": "Numbering Red",
+        "canonical": "oklch(0.71 0.165 30)",
+        "lightRendition": "oklch(0.45 0.185 30)",
+        "tonalRamp": ["oklch(0.18 0.165 30)", "oklch(0.29 0.165 30)", "oklch(0.4 0.165 30)", "oklch(0.5 0.165 30)", "oklch(0.61 0.165 30)", "oklch(0.71 0.165 30)", "oklch(0.83 0.12 30)", "oklch(0.94 0.06 30)"]
+      },
+      "numbering-soft": {
+        "role": "secondary",
+        "displayName": "Numbering Wash",
+        "canonical": "oklch(0.71 0.165 30 / 0.14)",
+        "lightRendition": "oklch(0.45 0.185 30 / 0.1)"
+      },
+      "caution": {
+        "role": "secondary",
+        "displayName": "Caution Gold",
+        "canonical": "oklch(0.84 0.125 78)",
+        "lightRendition": "oklch(0.43 0.11 68)",
+        "tonalRamp": ["oklch(0.2 0.125 78)", "oklch(0.31 0.125 78)", "oklch(0.42 0.125 78)", "oklch(0.53 0.125 78)", "oklch(0.64 0.125 78)", "oklch(0.74 0.125 78)", "oklch(0.84 0.125 78)", "oklch(0.94 0.07 78)"]
+      },
+      "ink-login": {
+        "role": "tertiary",
+        "displayName": "Login Olive",
+        "canonical": "oklch(0.8 0.09 128)",
+        "lightRendition": "oklch(0.44 0.1 132)",
+        "tonalRamp": ["oklch(0.2 0.09 128)", "oklch(0.3 0.09 128)", "oklch(0.4 0.09 128)", "oklch(0.5 0.09 128)", "oklch(0.6 0.09 128)", "oklch(0.7 0.09 128)", "oklch(0.8 0.09 128)", "oklch(0.93 0.06 128)"]
+      },
+      "ink-ssh": {
+        "role": "tertiary",
+        "displayName": "SSH Blue",
+        "canonical": "oklch(0.79 0.095 245)",
+        "lightRendition": "oklch(0.43 0.11 250)",
+        "tonalRamp": ["oklch(0.2 0.095 245)", "oklch(0.3 0.095 245)", "oklch(0.4 0.095 245)", "oklch(0.5 0.095 245)", "oklch(0.6 0.095 245)", "oklch(0.7 0.095 245)", "oklch(0.79 0.095 245)", "oklch(0.93 0.06 245)"]
+      },
+      "ink-apiKey": {
+        "role": "tertiary",
+        "displayName": "API Violet",
+        "canonical": "oklch(0.79 0.1 300)",
+        "lightRendition": "oklch(0.44 0.12 300)",
+        "tonalRamp": ["oklch(0.2 0.1 300)", "oklch(0.3 0.1 300)", "oklch(0.4 0.1 300)", "oklch(0.5 0.1 300)", "oklch(0.6 0.1 300)", "oklch(0.7 0.1 300)", "oklch(0.79 0.1 300)", "oklch(0.93 0.06 300)"]
+      },
+      "ink-note": {
+        "role": "tertiary",
+        "displayName": "Note Amber",
+        "canonical": "oklch(0.81 0.085 70)",
+        "lightRendition": "oklch(0.45 0.09 62)",
+        "tonalRamp": ["oklch(0.2 0.085 70)", "oklch(0.3 0.085 70)", "oklch(0.4 0.085 70)", "oklch(0.5 0.085 70)", "oklch(0.61 0.085 70)", "oklch(0.71 0.085 70)", "oklch(0.81 0.085 70)", "oklch(0.93 0.05 70)"]
+      },
+      "ink-card": {
+        "role": "tertiary",
+        "displayName": "Card Magenta",
+        "canonical": "oklch(0.79 0.1 352)",
+        "lightRendition": "oklch(0.45 0.13 355)",
+        "tonalRamp": ["oklch(0.2 0.1 352)", "oklch(0.3 0.1 352)", "oklch(0.4 0.1 352)", "oklch(0.5 0.1 352)", "oklch(0.6 0.1 352)", "oklch(0.7 0.1 352)", "oklch(0.79 0.1 352)", "oklch(0.93 0.06 352)"]
+      },
+      "ink-identity": {
+        "role": "tertiary",
+        "displayName": "Identity Steel",
+        "canonical": "oklch(0.81 0.06 205)",
+        "lightRendition": "oklch(0.44 0.07 210)",
+        "tonalRamp": ["oklch(0.2 0.06 205)", "oklch(0.3 0.06 205)", "oklch(0.4 0.06 205)", "oklch(0.5 0.06 205)", "oklch(0.61 0.06 205)", "oklch(0.71 0.06 205)", "oklch(0.81 0.06 205)", "oklch(0.93 0.04 205)"]
+      },
+      "rosette-a": { "role": "tertiary", "displayName": "Rosette Layer A", "canonical": "oklch(0.78 0.03 195)", "lightRendition": "oklch(0.42 0.035 220)" },
+      "rosette-b": { "role": "tertiary", "displayName": "Rosette Layer B", "canonical": "oklch(0.82 0.13 165)", "lightRendition": "oklch(0.52 0.105 165)" },
+      "rosette-ring": { "role": "tertiary", "displayName": "Rosette Ring", "canonical": "oklch(0.56 0.045 200)", "lightRendition": "oklch(0.66 0.04 200)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Vault name at unlock and the welcome title. Nowhere else." },
+      "headline": { "displayName": "Headline", "purpose": "Entry title on the data page, editor title input, empty-pane heading." },
+      "title": { "displayName": "Title", "purpose": "Dialog headings and import confirmation." },
+      "subtitle": { "displayName": "Subtitle", "purpose": "Panel and index column titles, rail vault name, input text." },
+      "body": { "displayName": "Body", "purpose": "Default voice: field values, row titles, buttons, menu items. Tabular figures on." },
+      "small": { "displayName": "Small", "purpose": "Hints, breadcrumbs, row subtitles, supporting prose." },
+      "label": { "displayName": "Label (caps)", "purpose": "Uppercase 11px data-page label voice: field labels, rail section labels, section headings." },
+      "mono": { "displayName": "Mono", "purpose": "Secrets, hosts, ports, codes, commands, serials and dates only — what the user retypes or runs." },
+      "denomination": { "displayName": "Denomination Word", "purpose": "The entry type word on the guilloche band, in the type's ink; 9.5px/0.06em in rail and index rows." }
+    },
+    "shadows": [
+      { "name": "pop", "value": "0 18px 40px -12px oklch(0.04 0.01 220 / 0.75), 0 3px 10px -2px oklch(0.04 0.01 220 / 0.55)", "purpose": "The only elevation token. Context menus, dialogs and the generator popover — things that genuinely detached from the sheet. Light rendition: 0 18px 40px -14px oklch(0.25 0.03 230 / 0.28), 0 3px 10px -3px oklch(0.25 0.03 230 / 0.18)." },
+      { "name": "knockout-halo", "value": "0 0 0 3px var(--paper)", "purpose": "Not depth: a paper-coloured ring that knocks the denomination word and serial out of the guilloche band's linework." },
+      { "name": "focus-wash", "value": "0 0 0 3px var(--control-soft)", "purpose": "Focus state of inputs and the search field; swaps to var(--numbering-soft) when aria-invalid." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The house easing: exponential ease-out, used for the rosette registration and every transform." },
+      { "name": "fast", "value": "150ms", "purpose": "State feedback: hover fills, border and colour changes, field action reveal." },
+      { "name": "med", "value": "200ms", "purpose": "Slightly weightier state changes: switch knob travel, strength cells." },
+      { "name": "registration", "value": "460ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "The single authored moment. On unlock the rosette's two offset layers rotate into register." },
+      { "name": "knock", "value": "400ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "A wrong password knocks the rosette layers further out of register and back." },
+      { "name": "derive", "value": "1.8s ease-in-out infinite", "purpose": "Key derivation: the out-of-register layer breathes while the vault is being opened." },
+      { "name": "strip-in", "value": "180ms cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Copy receipt and notice bands rise 6px into the foot of the sheet." },
+      { "name": "reduced-motion", "value": "animation-duration: 1ms; transition-duration: 1ms", "purpose": "prefers-reduced-motion collapses everything above, registration included." }
+    ],
+    "breakpoints": [
+      { "name": "index-narrow", "value": "1180px" },
+      { "name": "compact", "value": "1000px" }
+    ],
+    "layoutTokens": [
+      { "name": "bar", "value": "44px", "purpose": "Every top bar; also the window drag region." },
+      { "name": "rail", "value": "232px", "purpose": "Left plate; 196px under 1000px." },
+      { "name": "index", "value": "392px", "purpose": "Index plate; 340px under 1180px, 304px under 1000px." },
+      { "name": "label-col", "value": "116px", "purpose": "The registered field grid's label column, shared by every entry type, the editor and the revision compare; 96px under 1000px." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The control ink. One per surface, on the action the user takes next (Copy password / Connect / Copy secret).",
+      "html": "<button class=\"ds-btn ds-btn-primary\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"4 17 10 11 4 5\"/><line x1=\"12\" y1=\"19\" x2=\"20\" y2=\"19\"/></svg>Connect</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 30px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: var(--r-1, 3px); background: transparent; color: var(--ink); font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 500; white-space: nowrap; transition: background-color 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out; } .ds-btn svg { width: 15px; height: 15px; flex: none; } .ds-btn-primary { border-color: transparent; background: var(--control); color: var(--on-control); font-weight: 600; } .ds-btn-primary:hover { background: var(--control-shift); } .ds-btn-primary:active { background: var(--control-shift); filter: brightness(0.92); } .ds-btn-primary:focus-visible { outline: 2px solid var(--control); outline-offset: 2px; }"
+    },
+    {
+      "name": "Plate Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "The default hairline-bordered button. Quiet and danger variants included.",
+      "html": "<span style=\"display:inline-flex;gap:6px\"><button class=\"ds-btn2\">Edit</button><button class=\"ds-btn2 ds-btn2-quiet\">Dismiss</button><button class=\"ds-btn2 ds-btn2-danger\">Delete forever</button></span>",
+      "css": ".ds-btn2 { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 30px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: var(--r-1, 3px); background: transparent; color: var(--ink); font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 500; transition: background-color 150ms ease-out, border-color 150ms ease-out, color 150ms ease-out; } .ds-btn2:hover { background: var(--raised); } .ds-btn2:active { background: var(--raised-2); } .ds-btn2:focus-visible { outline: 2px solid var(--control); outline-offset: 2px; } .ds-btn2-quiet { border-color: transparent; color: var(--ink-2); } .ds-btn2-quiet:hover { color: var(--ink); background: var(--raised); } .ds-btn2-danger { border-color: color-mix(in oklch, var(--numbering) 50%, transparent); color: var(--numbering); } .ds-btn2-danger:hover { background: var(--numbering-soft); }"
+    },
+    {
+      "name": "Field Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Sunken well, hairline border, control-ink focus wash. Mono variant for hosts and secrets.",
+      "html": "<span style=\"display:flex;flex-direction:column;gap:8px;max-width:320px\"><input class=\"ds-input\" placeholder=\"name@example.com\"><input class=\"ds-input ds-input-mono\" value=\"db.example.com\"><input class=\"ds-input\" aria-invalid=\"true\" value=\"wrong\"></span>",
+      "css": ".ds-input { width: 100%; height: 32px; padding: 0 10px; border: 1px solid var(--line); border-radius: var(--r-1, 3px); background: var(--sunken); color: var(--ink); font-family: var(--font-ui); font-size: 0.875rem; transition: border-color 150ms ease-out, box-shadow 150ms ease-out; } .ds-input::placeholder { color: var(--ink-3); opacity: 1; } .ds-input:hover { border-color: var(--line-strong); } .ds-input:focus { outline: none; border-color: var(--control); box-shadow: 0 0 0 3px var(--control-soft); } .ds-input[aria-invalid='true'] { border-color: var(--numbering); box-shadow: 0 0 0 3px var(--numbering-soft); } .ds-input-mono { font-family: var(--font-mono); font-size: 0.8125rem; font-variant-ligatures: none; }"
+    },
+    {
+      "name": "Index Row",
+      "kind": "nav",
+      "refersTo": "index-row",
+      "description": "The dense 30px entry row: denomination word, title, mono subtitle, flags. Rows, never cards.",
+      "html": "<div class=\"ds-rows\"><div class=\"ds-row\" data-type=\"login\"><span class=\"ds-row-mark\">LOGIN</span><span class=\"ds-row-title\">GitHub</span><span class=\"ds-row-sub\">simon · github.com</span><span class=\"ds-row-flag\">2FA</span></div><div class=\"ds-row ds-row-selected\" data-type=\"ssh\"><span class=\"ds-row-mark\">SSH</span><span class=\"ds-row-title\">db-primary</span><span class=\"ds-row-sub\">deploy@10.0.4.12</span><span class=\"ds-row-alert\"></span></div><div class=\"ds-row\" data-type=\"card\"><span class=\"ds-row-mark\">CARD</span><span class=\"ds-row-title\">Company Visa</span><span class=\"ds-row-sub\">Visa ···· 4242</span><span></span></div></div>",
+      "css": ".ds-rows { width: 392px; max-width: 100%; background: var(--ground); font-family: var(--font-ui); } .ds-row { display: grid; grid-template-columns: 38px minmax(96px, 1.25fr) minmax(0, 1fr) auto; align-items: center; gap: 8px; height: 30px; padding: 0 10px; } .ds-row[data-type='login'] { --type-ink: var(--ink-login); } .ds-row[data-type='ssh'] { --type-ink: var(--ink-ssh); } .ds-row[data-type='card'] { --type-ink: var(--ink-card); } .ds-row:hover { background: var(--raised); } .ds-row-selected { background: var(--raised-2); } .ds-row-mark { color: var(--type-ink); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.06em; } .ds-row-title { font-size: 0.8125rem; font-weight: 500; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-row-sub { color: var(--ink-3); font-family: var(--font-mono); font-size: 0.75rem; text-align: right; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-row-flag { padding: 0 3px; border: 1px solid var(--line-strong); border-radius: 2px; color: var(--ink-3); font-size: 9px; letter-spacing: 0.04em; } .ds-row-alert { width: 5px; height: 5px; border-radius: 50%; background: var(--numbering); }"
+    },
+    {
+      "name": "Registered Field Row",
+      "kind": "custom",
+      "refersTo": "field-row",
+      "description": "The shared field grid every entry type, the editor and the revision compare print into: 116px uppercase label column, value, hover-revealed actions.",
+      "html": "<dl class=\"ds-fields\"><div class=\"ds-field\"><dt class=\"ds-field-label\">Host</dt><dd class=\"ds-field-value ds-mono\">10.0.4.12</dd><div class=\"ds-field-actions\"><button class=\"ds-field-act\">Copy</button></div></div><div class=\"ds-field\"><dt class=\"ds-field-label\">Private key</dt><dd class=\"ds-field-value\"><span class=\"ds-sealed\" role=\"img\" aria-label=\"Sealed\"></span></dd><div class=\"ds-field-actions\"><button class=\"ds-field-act\">Show</button><button class=\"ds-field-act\">Copy</button></div></div></dl>",
+      "css": ".ds-fields { margin: 0; border-top: 1px solid var(--line); background: var(--paper); font-family: var(--font-ui); } .ds-field { display: grid; grid-template-columns: 116px minmax(0, 1fr) auto; align-items: start; gap: 12px; padding: 9px 18px; border-bottom: 1px solid var(--line); } .ds-field:hover { background: color-mix(in oklch, var(--raised) 55%, transparent); } .ds-field-label { padding-top: 2px; color: var(--ink-3); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; } .ds-field-value { margin: 0; min-width: 0; font-size: 0.8125rem; color: var(--ink); } .ds-mono { font-family: var(--font-mono); font-variant-ligatures: none; } .ds-field-actions { display: flex; align-items: center; gap: 2px; opacity: 0.5; transition: opacity 150ms ease-out; } .ds-field:hover .ds-field-actions, .ds-field:focus-within .ds-field-actions { opacity: 1; } .ds-field-act { height: 24px; padding: 0 8px; border: 1px solid transparent; border-radius: 3px; background: transparent; color: var(--ink-2); font-family: var(--font-ui); font-size: 0.75rem; font-weight: 500; } .ds-field-act:hover { color: var(--ink); background: var(--raised); } .ds-field-act:focus-visible { outline: 2px solid var(--control); outline-offset: 2px; } .ds-sealed { display: inline-block; width: 172px; max-width: 100%; height: 12px; vertical-align: middle; background: var(--underprint); -webkit-mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 12'%3E%3Cg fill='none' stroke='%23000' stroke-width='.75'%3E%3Cpath d='M0 3c4.5 0 4.5 6 9 6s4.5-6 9-6'/%3E%3Cpath d='M0 9c4.5 0 4.5-6 9-6s4.5 6 9 6'/%3E%3Cpath d='M0 6c2.25 0 2.25-3 4.5-3S6.75 9 9 9s2.25-6 4.5-6S15.75 6 18 6' opacity='.6'/%3E%3C/g%3E%3C/svg%3E\") repeat-x 0 0 / 18px 12px; mask: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 12'%3E%3Cg fill='none' stroke='%23000' stroke-width='.75'%3E%3Cpath d='M0 3c4.5 0 4.5 6 9 6s4.5-6 9-6'/%3E%3Cpath d='M0 9c4.5 0 4.5-6 9-6s4.5 6 9 6'/%3E%3Cpath d='M0 6c2.25 0 2.25-3 4.5-3S6.75 9 9 9s2.25-6 4.5-6S15.75 6 18 6' opacity='.6'/%3E%3C/g%3E%3C/svg%3E\") repeat-x 0 0 / 18px 12px; }"
+    },
+    {
+      "name": "Guilloche Denomination Band",
+      "kind": "custom",
+      "refersTo": "band",
+      "description": "The 22px top border of the data page: repeating guilloche in the entry type's ink, with the type word and serial knocked out of the linework.",
+      "html": "<div class=\"ds-band\" data-type=\"ssh\"><span class=\"ds-band-mark\">SSH</span><span class=\"ds-band-serial\">REV 1 · 12 SEPT 2026</span></div>",
+      "css": ".ds-band { position: relative; display: flex; align-items: center; justify-content: space-between; height: 22px; padding: 0 18px; overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper); } .ds-band[data-type='ssh'] { --type-ink: var(--ink-ssh); } .ds-band::before { content: ''; position: absolute; inset: 0; background: var(--type-ink); opacity: 0.55; -webkit-mask-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cg fill='none' stroke='%23000' stroke-width='.8'%3E%3Cpath d='M0 5c12 0 12 12 24 12s12-12 24-12'/%3E%3Cpath d='M0 17c12 0 12-12 24-12s12 12 24 12'/%3E%3Cpath d='M0 11c6 0 6-7 12-7s6 14 12 14 6-14 12-14 6 7 12 7' opacity='.75'/%3E%3C/g%3E%3C/svg%3E\"), linear-gradient(to right, #000 0 78%, rgba(0,0,0,0.35) 90%, transparent 99%); mask-image: url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='22' viewBox='0 0 48 22'%3E%3Cg fill='none' stroke='%23000' stroke-width='.8'%3E%3Cpath d='M0 5c12 0 12 12 24 12s12-12 24-12'/%3E%3Cpath d='M0 17c12 0 12-12 24-12s12 12 24 12'/%3E%3Cpath d='M0 11c6 0 6-7 12-7s6 14 12 14 6-14 12-14 6 7 12 7' opacity='.75'/%3E%3C/g%3E%3C/svg%3E\"), linear-gradient(to right, #000 0 78%, rgba(0,0,0,0.35) 90%, transparent 99%); -webkit-mask-repeat: repeat-x, no-repeat; mask-repeat: repeat-x, no-repeat; -webkit-mask-size: 48px 22px, 100% 100%; mask-size: 48px 22px, 100% 100%; -webkit-mask-composite: source-in; mask-composite: intersect; } .ds-band-mark, .ds-band-serial { position: relative; z-index: 1; padding: 0 10px; background: var(--paper); box-shadow: 0 0 0 3px var(--paper); } .ds-band-mark { color: var(--type-ink); font-family: var(--font-mono); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; } .ds-band-serial { color: var(--ink-3); font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.09em; }"
+    },
+    {
+      "name": "Digit Cells",
+      "kind": "custom",
+      "refersTo": "digit-cell",
+      "description": "Fixed cells for TOTP codes, ports, card numbers and expiries: digits swap in place, grouped numbers wrap by whole group so every row shares one left edge.",
+      "html": "<span class=\"ds-cells ds-cells-grouped\"><span class=\"ds-group\"><span>4</span><span>1</span><span>1</span></span><span class=\"ds-group\"><span>9</span><span>2</span><span>7</span></span><span class=\"ds-track\"><span class=\"ds-fill\"></span></span><span class=\"ds-seconds\">18s</span></span>",
+      "css": ".ds-cells { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; max-width: 100%; font-family: var(--font-mono); font-size: 1rem; } .ds-group { display: inline-flex; gap: 3px; } .ds-cells span:not(.ds-group):not(.ds-track):not(.ds-fill):not(.ds-seconds) { display: inline-grid; place-items: center; min-width: 1.5em; height: 1.8em; border: 1px solid var(--line); border-radius: 2px; background: var(--sunken); color: var(--ink); } .ds-track { display: inline-block; flex: 0 1 58px; min-width: 22px; height: 2px; background: var(--line); overflow: hidden; } .ds-fill { display: block; width: 60%; height: 100%; background: var(--control); } .ds-seconds { color: var(--ink-3); font-size: 0.6875rem; }"
+    },
+    {
+      "name": "Machine-Readable Strip",
+      "kind": "custom",
+      "refersTo": "mrz",
+      "description": "The MRZ line of the data page: the command this entry exists to run, printed full width with a filler run. The whole strip is the copy button.",
+      "html": "<button class=\"ds-mrz\"><span class=\"ds-mrz-text\">ssh -p 2222 -J ops@bastion.example.net:22 deploy@10.0.4.12</span><span class=\"ds-mrz-fill\" aria-hidden=\"true\">&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span><span class=\"ds-mrz-hint\">Copy</span></button>",
+      "css": ".ds-mrz { display: flex; align-items: center; gap: 12px; width: 100%; padding: 11px 18px; border: 0; border-top: 1px solid var(--line); background: var(--sunken); text-align: left; overflow: hidden; transition: background-color 150ms ease-out; } .ds-mrz:hover { background: var(--raised); } .ds-mrz:focus-visible { outline: 2px solid var(--control); outline-offset: -2px; } .ds-mrz-text { flex: none; color: var(--ink); font-family: var(--font-mono); font-size: 0.8125rem; white-space: nowrap; } .ds-mrz-fill { flex: 1; min-width: 0; overflow: hidden; color: var(--underprint); opacity: 0.45; font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.14em; white-space: nowrap; } .ds-mrz-hint { flex: none; color: var(--ink-3); font-family: var(--font-ui); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Copy Receipt Strip",
+      "kind": "custom",
+      "refersTo": "receipt",
+      "description": "Printed across the foot of the sheet, not floated as a toast. The clearing countdown is mono in numbering red.",
+      "html": "<div class=\"ds-receipt\" role=\"status\"><span class=\"ds-receipt-label\">Password copied</span><span class=\"ds-receipt-count\">clears in 0:24</span></div>",
+      "css": ".ds-receipt { display: flex; align-items: center; gap: 12px; height: 30px; padding: 0 16px 0 24px; border-top: 1px solid var(--line-strong); background: var(--sunken); font-family: var(--font-ui); font-size: 0.75rem; color: var(--ink); animation: ds-strip-in 180ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-receipt-label { font-weight: 500; } .ds-receipt-count { color: var(--numbering); font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.04em; } @keyframes ds-strip-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }"
+    },
+    {
+      "name": "Context Menu",
+      "kind": "custom",
+      "refersTo": "menu-item",
+      "description": "One of the three surfaces allowed to detach from the sheet: 5px corners, raised ground, pop shadow, mono shortcut hints.",
+      "html": "<div class=\"ds-menu\" role=\"menu\"><button class=\"ds-menu-item\"><span class=\"ds-menu-label\">Copy password</span><span class=\"ds-menu-hint\">⌘C</span></button><button class=\"ds-menu-item\"><span class=\"ds-menu-label\">Reveal</span><span class=\"ds-menu-hint\">⌘R</span></button><div class=\"ds-menu-sep\" role=\"separator\"></div><button class=\"ds-menu-item ds-menu-danger\"><span class=\"ds-menu-label\">Move to trash</span></button></div>",
+      "css": ".ds-menu { min-width: 184px; max-width: 320px; padding: 4px; border: 1px solid var(--line-strong); border-radius: 5px; background: var(--raised); box-shadow: 0 18px 40px -12px oklch(0.04 0.01 220 / 0.75), 0 3px 10px -2px oklch(0.04 0.01 220 / 0.55); font-family: var(--font-ui); } .ds-menu-item { display: flex; align-items: center; gap: 8px; width: 100%; height: 26px; padding: 0 8px; border: 0; border-radius: 2px; background: none; color: var(--ink); font-family: inherit; font-size: 0.8125rem; text-align: left; } .ds-menu-item:hover, .ds-menu-item:focus-visible { background: var(--raised-2); outline: none; } .ds-menu-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-menu-hint { color: var(--ink-3); font-family: var(--font-mono); font-size: 0.6875rem; } .ds-menu-danger { color: var(--numbering); } .ds-menu-sep { height: 1px; margin: 4px 6px; background: var(--line); }"
+    },
+    {
+      "name": "Keycap",
+      "kind": "chip",
+      "refersTo": "keycap",
+      "description": "Shortcut keycap: a hairline box with a doubled bottom rule, used wherever the app teaches a keystroke.",
+      "html": "<span style=\"display:inline-flex;gap:5px;align-items:center;font-family:var(--font-ui);font-size:0.75rem;color:var(--ink-3)\">Search<kbd class=\"ds-kbd\">⌘K</kbd><kbd class=\"ds-kbd\">⌘L</kbd></span>",
+      "css": ".ds-kbd { display: inline-flex; align-items: center; height: 18px; padding: 0 5px; border: 1px solid var(--line-strong); border-bottom-width: 2px; border-radius: 3px; color: var(--ink-3); font-family: var(--font-mono); font-size: 10.5px; line-height: 1; }"
+    },
+    {
+      "name": "Tag",
+      "kind": "chip",
+      "refersTo": "tag",
+      "description": "Unfilled hairline tag, 2px corners. No coloured pills.",
+      "html": "<span style=\"display:inline-flex;gap:5px\"><span class=\"ds-tag\">postgres</span><span class=\"ds-tag\">production</span></span>",
+      "css": ".ds-tag { padding: 1px 7px; border: 1px solid var(--line-strong); border-radius: 2px; color: var(--ink-2); font-family: var(--font-ui); font-size: 0.6875rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Security Print",
+    "overview": "PassVault is drawn as a security document, not as an app. Its reference material is the passport data page and the banknote: intaglio hairlines instead of card edges, a guilloche rosette that identifies the vault the way a watermark identifies a note, denomination words instead of icon tiles, and a single optically variable ink reserved for the action you are about to take. Every protection the product performs is printed where it can be checked — a sealed field looks sealed, a copy prints its own clearing countdown, an unsaved revision is marked in numbering red.\n\nThe default rendition is plate ink: a deep blue-black ground lit only by hairlines and ink. A second rendition, cotton security paper, is a warm off-white sheet printed in cold intaglio ink; it is not a tint inversion but a second printing of the same plates, and the light sheet carries an actual repeated underprint figure behind the data page because paper has tooth and an ink plate does not. The renderer stamps data-theme on <html> itself, so the rendition follows the app's own setting rather than the page's media query.\n\nDensity is deliberate and unapologetic: 30px index rows, 44px bars, 22px denomination band, a 116px label column. Nothing is a card; nothing floats without cause. The rejected worlds are visible in what is absent — no rounded neutral cards, no favicon avatars, no generic blue primary, and equally no hacker-terminal green-on-black theatre. Measured in the shipped build, every text token clears 5.3:1 against its own ground in both renditions.",
+    "keyCharacteristics": [
+      "Hairline intaglio rules and 3px corners; plates, never cards",
+      "Six denomination inks naming entry types, always as words",
+      "One optically variable control ink, reserved for the next action",
+      "Generative guilloche rosette per vault, real linework, seeded from the vault id",
+      "Sealed underprint bands stand in for every unreleased value",
+      "Fixed digit cells for codes, ports and card numbers, in register"
+    ],
+    "rules": [
+      { "name": "The One Control Ink Rule", "body": "The control ink marks only what the user acts on next. A passive readout never wears it: the password strength meter prints in the entry's own denomination ink (or ink-2 at the gate, where no entry exists), and never in emerald, because strength is a quality reading and not a button.", "section": "colors" },
+      { "name": "The Numbering Red Rule", "body": "Red is the register ink, not an error colour in general. It is spent on four things only: a copy in flight and its clearing countdown, a health problem, an unsaved or restorable revision, and a destructive action.", "section": "colors" },
+      { "name": "The Denomination Word Rule", "body": "An entry type is named by its word (LOGIN, SSH, API, NOTE, CARD, ID) in its own ink, in mono, letterspaced. Type is never carried by an icon tile, a coloured dot, a favicon or an avatar.", "section": "colors" },
+      { "name": "The Mono Is Evidence Rule", "body": "Mono is reserved for what the user retypes, transcribes or runs: secrets, hosts, ports, codes, commands, serials and dates. Prose is never mono. Row subtitles for notes and identities switch back to the UI face precisely because they carry words, not machine values.", "section": "typography" },
+      { "name": "The Secret Never Wraps Rule", "body": "A revealed secret is a single non-wrapping line that scrolls horizontally, masked to transparent over the last 20px of its box. A line break inside a hyphenated secret is ambiguous to whoever is retyping it, and a clipped value must never be able to look like a whole one. Long transcription goes to the numbered large-type dialog instead.", "section": "typography" },
+      { "name": "The Register Rule", "body": "Every entry type, the editor, and the revision compare use the same field grid: a --label-col (116px) label column, a flexible value column, and an auto action column. A long grouped number wraps by whole group so every row of it starts on the same left edge. Values of the same kind always appear in the same place on the sheet.", "section": "layout" },
+      { "name": "The Flat Sheet Rule", "body": "Surfaces on the sheet never carry a shadow. If an element needs --shadow-pop, it must be genuinely overlaid (menu, dialog, popover) and positioned fixed. Status strips print across the foot of the sheet as full-width bands, not as floating toasts.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set data-type on any element representing an entry and let --type-ink cascade; never hard-code one of the six denomination inks.",
+      "Do name entry types with their word (LOGIN, SSH, API, NOTE, CARD, ID) in mono, letterspaced, in the type's ink.",
+      "Do keep exactly one control-ink element per surface, and make it the action the user will take next.",
+      "Do put every value, in every entry type and in the editor and the revision compare, on the shared --label-col field grid.",
+      "Do reach for a sealed band whenever a value exists but has not been released to the renderer.",
+      "Do set codes, ports, card numbers and expiries in fixed digit cells, grouped so a long number wraps by whole group.",
+      "Do divide with hairlines (line, line-strong) and separate with tonal steps (raised, raised-2).",
+      "Do keep state feedback at 150-200ms (--fast, --med) and leave the 460ms rosette registration as the only authored moment; respect the prefers-reduced-motion block that collapses all of it to 1ms.",
+      "Do draw new pattern work as generated or masked linework in ink tokens, at the same guilloche family as the rosette and band."
+    ],
+    "donts": [
+      "Don't put the control ink on a passive readout — strength, counts, progress of something the user is not about to act on.",
+      "Don't spend numbering red on anything but copies, health problems, unsaved or restorable revisions, and destructive actions; expiry is caution.",
+      "Don't build cards: no filled, rounded, shadowed containers on the sheet. Sections are hairline-ruled plate regions (.offer is the pattern).",
+      "Don't add a shadow to anything that has not genuinely detached from the sheet; --shadow-pop belongs to menus, dialogs and popovers only.",
+      "Don't substitute an icon, dot, favicon or avatar where a word does the structural work.",
+      "Don't let a revealed secret wrap, and don't remove the right-edge fade that proves a value is cut off.",
+      "Don't exceed 5px corners on anything inside a window (8px is reserved for the quick-search window itself).",
+      "Don't branch the rendition on prefers-color-scheme; read :root[data-theme='light'], because the renderer owns the theme stamp.",
+      "Don't introduce a second accent hue or a generic blue primary; the control ink and the six denomination inks are the whole accent vocabulary."
+    ]
+  }
+}

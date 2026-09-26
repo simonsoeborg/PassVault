@@ -1,0 +1,41 @@
+appId: style.impeccable.passvault
+productName: PassVault
+directories:
+  buildResources: build
+  output: dist
+files:
+  - out/**
+  - package.json
+asar: true
+
+# Close the doors Electron leaves open in a packaged app.
+electronFuses:
+  runAsNode: false
+  enableCookieEncryption: true
+  enableNodeOptionsEnvironmentVariable: false
+  enableNodeCliInspectArguments: false
+  enableEmbeddedAsarIntegrityValidation: true
+  onlyLoadAppFromAsar: true
+
+mac:
+  category: public.app-category.utilities
+  target:
+    - dmg
+    - zip
+  hardenedRuntime: true
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # Touch ID needs a real code signature: set CSC_IDENTITY_AUTO_DISCOVERY or
+  # sign after building, otherwise biometric unlock is refused by macOS.
+
+win:
+  target:
+    - nsis
+  # Windows Hello is reached through Windows PowerShell; no extra permissions.
+
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Utility
+  synopsis: Local-first password and SSH vault
