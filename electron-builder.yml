@@ -39,3 +39,4 @@ linux:
     - deb
   category: Utility
   synopsis: Local-first password and SSH vault
+  maintainer: simonsoeborg <simonsoeborg1@gmail.com>

@@ -1,5 +1,5 @@
 // Exercises the real ssh-add / ssh-agent path against a throwaway agent, never the
-// developer's own. Skips itself where OpenSSH is not installed.
+// developer's own. Skips itself where OpenSSH is not installed, and on Windows.
 
 import { spawn } from 'node:child_process'
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
@@ -13,7 +13,9 @@ import { findExecutable, run } from '../src/main/exec'
 const KEYGEN = findExecutable('ssh-keygen')
 const AGENT = findExecutable('ssh-agent')
 const SSH_ADD = findExecutable('ssh-add')
-const available = Boolean(KEYGEN && AGENT && SSH_ADD)
+// Windows' ssh-agent is a system service on a named pipe; `ssh-agent -s` cannot
+// start a throwaway one, so this suite only runs where agents are per-process.
+const available = Boolean(KEYGEN && AGENT && SSH_ADD) && process.platform !== 'win32'
 
 describe.skipIf(!available)('ssh agent', () => {
   let dir: string
