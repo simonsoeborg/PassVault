@@ -1,7 +1,7 @@
 {
   "name": "passvault",
   "productName": "PassVault",
-  "version": "0.1.0-rc.3",
+  "version": "0.1.0-rc.6",
   "description": "A local-first, cross-platform password vault for technical people.",
   "private": true,
   "main": "./out/main/index.js",
@@ -18,7 +18,8 @@
     "dist:win": "electron-vite build && electron-builder --win",
     "dist:linux": "electron-vite build && electron-builder --linux",
     "smoke": "node scripts/smoke.mjs",
-    "capture": "node scripts/capture.mjs"
+    "capture": "node scripts/capture.mjs",
+    "icons": "node --no-warnings scripts/icons.mjs"
   },
   "dependencies": {
     "@noble/ciphers": "^2.4.0",

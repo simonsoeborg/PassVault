@@ -3,7 +3,9 @@
 # publishes a pre-release; a plain v0.1.0 publishes a full release.
 #
 # Builds are unsigned. macOS gets an ad-hoc signature so it runs on Apple
-# Silicon, but Gatekeeper and Touch ID still need a real Developer ID.
+# Silicon, but Gatekeeper and Touch ID still need a real Developer ID. Ad-hoc
+# code has no Team ID, so these builds use entitlements.mac.adhoc.plist,
+# which turns off library validation; a Developer ID build should not.
 
 name: Release
 
@@ -35,7 +37,7 @@ jobs:
             dist: --linux --x64
           - name: macos
             os: macos-latest
-            dist: --mac --arm64 --x64 --config.mac.identity=-
+            dist: --mac --arm64 --x64 --config.mac.identity=- --config.mac.entitlements=build/entitlements.mac.adhoc.plist --config.mac.entitlementsInherit=build/entitlements.mac.adhoc.plist
           - name: windows
             os: windows-latest
             dist: --win --x64
@@ -75,6 +77,22 @@ jobs:
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: false
 
+      # The smoke test runs the unpackaged app, so it cannot see signing
+      # problems; start the signed .app itself and make sure it stays up.
+      - name: Launch packaged app (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          app=dist/mac-arm64/PassVault.app
+          codesign --verify --deep --strict --verbose=2 "$app"
+          "$app/Contents/MacOS/PassVault" --user-data-dir="$RUNNER_TEMP/launch-check" &
+          pid=$!
+          sleep 15
+          if ! kill -0 "$pid" 2>/dev/null; then
+            echo "::error::The packaged app exited at launch"
+            exit 1
+          fi
+          kill "$pid"
+
       - uses: actions/upload-artifact@v5
         with:
           name: passvault-${{ matrix.name }}
@@ -98,7 +116,13 @@ jobs:
 
       - name: Checksums
         working-directory: artifacts
-        run: sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
+        # GitHub renames assets with spaces, which would break the sums.
+        run: |
+          if ls | grep -q ' '; then
+            echo "::error::Artifact names must not contain spaces:" && ls | grep ' '
+            exit 1
+          fi
+          sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
 
       - name: Create release
         env:
