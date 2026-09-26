@@ -323,6 +323,8 @@ The recurring geometry is linework. The guilloche figure appears at four scales:
 ### The vault rosette (signature)
 Deterministic generative guilloche from the vault id, three stacked layers — ring, layer B in control-ink hue, layer A in cool steel. It appears at 132px on the gate and empty pane and as a small badge in the rail. While locked or deriving, layers A and B sit deliberately out of register (-4° and +9°/0.965 scale); on unlock they rotate into register over 460ms on `--ease-out` (`cubic-bezier(0.16, 1, 0.3, 1)`). Deriving breathes on a 1.8s loop; a wrong password knocks the layers further out of register for 400ms and returns them.
 
+### App icon
+The icon is the rosette the app prints for itself: `rosetteFor('passvault')`, the fallback seed, drawn in register on a `plate` squircle with one `line-strong` hairline frame. Layer B is the only place the control ink is printed as a true optically variable shift, `control` to `control-shift` across the plate. Below 200px of plate it switches to the rosette's small format, as the rail badge does. Regenerate with `npm run icons` (`scripts/icons.mjs`); never edit the PNGs by hand.
 ### Sealed band and digit cells (signature)
 A `sealed` band — 172px × 12px of fine-line guilloche masked in `underprint` — stands for any value the vault has not released, with an accessible label instead of bullet glyphs. Fixed digit cells (`1.35em` × `1.7em`, `sunken`, 2px corners, mono) carry TOTP codes, ports, card numbers and expiry dates so digits swap in place; grouped numbers wrap by whole group. A TOTP adds a 2px countdown track filled in control ink, turning numbering red in its last five seconds.
 

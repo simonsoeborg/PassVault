@@ -39,6 +39,9 @@ nsis:
   artifactName: ${productName}-Setup-${version}.${ext}
 
 linux:
+  # Hand-tuned sizes from scripts/icons.mjs; the small ones use the rosette's
+  # low-lobe format so they do not fill in when downscaled.
+  icon: build/icons
   target:
     - AppImage
     - deb
