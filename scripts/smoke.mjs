@@ -71,6 +71,10 @@ try {
     await page.evaluate(() => typeof require === 'undefined' && typeof process === 'undefined'),
   )
 
+  // CI machines have seen no keyboard or mouse for ages, so the system idle
+  // time already exceeds any auto-lock limit and would lock mid-run.
+  await page.evaluate(() => window.passvault.settings.update({ autoLockMinutes: 0 }))
+
   const state = await page.evaluate(() => window.passvault.getState())
   check('app state reports a locked vault', state.locked === true, `platform ${state.platform}`)
   check('biometrics are probed', typeof state.biometrics?.kind === 'string', `${state.biometrics?.kind}, available=${state.biometrics?.available}`)
