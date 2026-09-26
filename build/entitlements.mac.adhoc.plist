@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <!-- For ad-hoc signed builds only (CI, until there is a Developer ID).
+         Ad-hoc code has no Team ID, so with library validation on, macOS
+         refuses to load Electron Framework and the app dies at launch.
+         DYLD environment variables stay blocked, so this does not open
+         the process to injection; a properly signed build should use
+         entitlements.mac.plist, which keeps library validation. -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <true/>
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <true/>
+    <key>com.apple.security.cs.disable-library-validation</key>
+    <true/>
+    <key>com.apple.security.cs.allow-dyld-environment-variables</key>
+    <false/>
+  </dict>
+</plist>
