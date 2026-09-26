@@ -98,7 +98,13 @@ jobs:
 
       - name: Checksums
         working-directory: artifacts
-        run: sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
+        # GitHub renames assets with spaces, which would break the sums.
+        run: |
+          if ls | grep -q ' '; then
+            echo "::error::Artifact names must not contain spaces:" && ls | grep ' '
+            exit 1
+          fi
+          sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
 
       - name: Create release
         env:

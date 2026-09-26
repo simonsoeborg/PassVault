@@ -33,6 +33,11 @@ win:
     - nsis
   # Windows Hello is reached through Windows PowerShell; no extra permissions.
 
+nsis:
+  # The default name has spaces, which GitHub turns into dots on upload, so
+  # the installer would no longer match its line in SHA256SUMS.txt.
+  artifactName: ${productName}-Setup-${version}.${ext}
+
 linux:
   target:
     - AppImage
