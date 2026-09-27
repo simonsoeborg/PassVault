@@ -67,10 +67,22 @@ jobs:
         run: |
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
           xvfb-run -a npm run smoke
+        env:
+          SMOKE_ARTIFACTS: ${{ runner.temp }}/smoke
 
       - name: Smoke test
         if: runner.os != 'Linux'
         run: npm run smoke
+        env:
+          SMOKE_ARTIFACTS: ${{ runner.temp }}/smoke
+
+      # A screenshot and the page text of a failed smoke test.
+      - uses: actions/upload-artifact@v5
+        if: failure()
+        with:
+          name: smoke-failure-${{ matrix.name }}
+          path: ${{ runner.temp }}/smoke
+          if-no-files-found: ignore
 
       - name: Package
         run: npx electron-builder ${{ matrix.dist }} --publish never

@@ -4,7 +4,7 @@
 //
 //   npm run build && npm run smoke
 
-import { mkdtemp, rm, stat, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, rm, stat, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { argon2d, argon2id } from 'hash-wasm'
@@ -212,6 +212,15 @@ try {
     .catch(() => 'unknown')
   report()
   console.log(`vault locked when it failed: ${locked}`)
+  // What the window showed, for CI to keep as an artifact (SMOKE_ARTIFACTS).
+  const artifacts = process.env.SMOKE_ARTIFACTS
+  if (artifacts) {
+    await mkdir(artifacts, { recursive: true })
+    const page = await app.firstWindow().catch(() => null)
+    await page?.screenshot({ path: join(artifacts, 'failure.png') }).catch(() => undefined)
+    const dom = await page?.evaluate(() => document.body.innerText).catch(() => null)
+    if (dom != null) await writeFile(join(artifacts, 'failure.txt'), dom)
+  }
   throw error
 } finally {
   await app.close()
