@@ -1,7 +1,7 @@
 {
   "name": "passvault",
   "productName": "PassVault",
-  "version": "0.1.0-rc.7",
+  "version": "0.1.0-rc.8",
   "description": "A local-first, cross-platform password vault for technical people.",
   "private": true,
   "main": "./out/main/index.js",
