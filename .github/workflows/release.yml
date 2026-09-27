@@ -84,14 +84,15 @@ jobs:
         run: |
           app=dist/mac-arm64/PassVault.app
           codesign --verify --deep --strict --verbose=2 "$app"
-          "$app/Contents/MacOS/PassVault" --user-data-dir="$RUNNER_TEMP/launch-check" &
-          pid=$!
+          plutil -extract LSEnvironment.NODE_NO_WARNINGS raw "$app/Contents/Info.plist"
+          # Start it through LaunchServices, as Finder does, not from this shell.
+          open -n "$app" --args --user-data-dir="$RUNNER_TEMP/launch-check"
           sleep 15
-          if ! kill -0 "$pid" 2>/dev/null; then
+          if ! pgrep -x PassVault >/dev/null; then
             echo "::error::The packaged app exited at launch"
             exit 1
           fi
-          kill "$pid"
+          pkill -x PassVault
 
       - uses: actions/upload-artifact@v5
         with:

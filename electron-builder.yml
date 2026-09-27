@@ -23,6 +23,14 @@ mac:
   # Apple Silicon Macs.
   artifactName: ${productName}-${version}-${arch}.${ext}
   category: public.app-category.utilities
+  # Opened from Finder, the app can get a stdout/stderr that fails on write,
+  # and a Node warning printed there becomes a blocking "Uncaught Exception:
+  # write EIO" box before the main script has run. LaunchServices applies
+  # this before Node starts, so warnings are never printed; the main process
+  # still logs them to ~/Library/Logs/PassVault/main.log.
+  extendInfo:
+    LSEnvironment:
+      NODE_NO_WARNINGS: '1'
   target:
     - dmg
     - zip
