@@ -2,10 +2,13 @@ import { app, globalShortcut, nativeTheme } from 'electron'
 import type { Settings } from '../shared/types'
 import { startAutoLock } from './autolock'
 import { AppController } from './controller'
+import { installDiagnostics } from './diagnostics'
 import { registerIpc } from './ipc'
 import { buildMenu } from './menu'
 import { hardenApp, hardenSession } from './security'
 import { WindowManager } from './windows'
+
+installDiagnostics()
 
 // Every renderer runs sandboxed, including ones created by future code.
 app.enableSandbox()
