@@ -72,8 +72,10 @@ try {
   )
 
   // CI machines have seen no keyboard or mouse for ages, so the system idle
-  // time already exceeds any auto-lock limit and would lock mid-run.
-  await page.evaluate(() => window.passvault.settings.update({ autoLockMinutes: 0 }))
+  // time already exceeds any auto-lock limit and would lock mid-run. macOS
+  // runners can also lock their screen or sleep partway through, which
+  // lockOnSleep turns into a vault lock that pulls the UI back to the gate.
+  await page.evaluate(() => window.passvault.settings.update({ autoLockMinutes: 0, lockOnSleep: false }))
 
   const state = await page.evaluate(() => window.passvault.getState())
   check('app state reports a locked vault', state.locked === true, `platform ${state.platform}`)
@@ -201,14 +203,28 @@ try {
     { path: join(process.cwd(), 'tests', 'fixtures', 'keepass1', 'basic.kdb') },
   )
   check('refuses a wrong KeePass 1 password', wrongKdb.ok === false && wrongKdb.error.code === 'WRONG_PASSWORD', wrongKdb.error?.code)
+} catch (error) {
+  // Print what passed before the failure, and whether the vault had locked,
+  // so a CI failure says where it stopped instead of only a timeout.
+  const locked = await app
+    .firstWindow()
+    .then((page) => page.evaluate(async () => (await window.passvault.getState()).locked))
+    .catch(() => 'unknown')
+  report()
+  console.log(`vault locked when it failed: ${locked}`)
+  throw error
 } finally {
   await app.close()
   await rm(userData, { recursive: true, force: true })
   await rm(vaultDir, { recursive: true, force: true })
 }
 
-for (const { name, pass, detail } of results) {
-  console.log(`${pass ? 'ok  ' : 'FAIL'} ${name}${detail ? ` — ${detail}` : ''}`)
+function report() {
+  for (const { name, pass, detail } of results) {
+    console.log(`${pass ? 'ok  ' : 'FAIL'} ${name}${detail ? ` — ${detail}` : ''}`)
+  }
+  console.log(`\n${results.length - failures}/${results.length} checks passed`)
 }
-console.log(`\n${results.length - failures}/${results.length} checks passed`)
+
+report()
 process.exit(failures ? 1 : 0)
