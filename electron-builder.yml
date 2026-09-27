@@ -18,6 +18,10 @@ electronFuses:
   onlyLoadAppFromAsar: true
 
 mac:
+  # Name both builds by architecture: the default leaves the Intel one without
+  # a suffix, so it looks like the one to download and runs under Rosetta on
+  # Apple Silicon Macs.
+  artifactName: ${productName}-${version}-${arch}.${ext}
   category: public.app-category.utilities
   target:
     - dmg
