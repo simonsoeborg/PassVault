@@ -1,4 +1,6 @@
-appId: style.impeccable.passvault
+# Permanent. macOS ties Keychain access to it and Windows derives the
+# installer's identity from it, so changing it later makes a new app.
+appId: dk.sobo.passvault
 productName: PassVault
 directories:
   buildResources: build
@@ -18,15 +20,38 @@ electronFuses:
   onlyLoadAppFromAsar: true
 
 mac:
+  # Name both builds by architecture: the default leaves the Intel one without
+  # a suffix, so it looks like the one to download and runs under Rosetta on
+  # Apple Silicon Macs.
+  artifactName: ${productName}-${version}-${arch}.${ext}
   category: public.app-category.utilities
+  # Opened from Finder, the app can get a stdout/stderr that fails on write,
+  # and a Node warning printed there becomes a blocking "Uncaught Exception:
+  # write EIO" box before the main script has run. LaunchServices applies
+  # this before Node starts, so warnings are never printed; the main process
+  # still logs them to ~/Library/Logs/PassVault/main.log.
+  extendInfo:
+    LSEnvironment:
+      NODE_NO_WARNINGS: '1'
   target:
     - dmg
     - zip
+  # Signed with a Developer ID and notarized. Gatekeeper opens the app without
+  # a warning, and Touch ID works: macOS refuses biometric unlock to code
+  # without a real signature.
+  #
+  # The certificate is found in the keychain: the login keychain on a Mac
+  # where it is installed, and one the release workflow creates in CI.
+  # Notarization runs when APPLE_API_KEY, APPLE_API_KEY_ID and
+  # APPLE_API_ISSUER are set and is skipped otherwise, so a local test build
+  # does not wait on Apple.
+  #
+  # forceCodeSigning makes a missing certificate fail the build instead of
+  # quietly producing an app that Gatekeeper blocks and Touch ID ignores.
   hardenedRuntime: true
+  forceCodeSigning: true
   entitlements: build/entitlements.mac.plist
   entitlementsInherit: build/entitlements.mac.plist
-  # Touch ID needs a real code signature: set CSC_IDENTITY_AUTO_DISCOVERY or
-  # sign after building, otherwise biometric unlock is refused by macOS.
 
 win:
   target:

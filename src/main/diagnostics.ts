@@ -25,6 +25,10 @@ export function installDiagnostics(): void {
   // window blank. Printing is optional, so a broken stream is ignored.
   for (const stream of [process.stdout, process.stderr]) stream.on('error', () => undefined)
 
+  // That alone was not enough on macOS: rc.7 still raised the box from Node's
+  // own warning printer (writeOut in node:internal/process/warning). Replace
+  // the printer, so a warning goes to the log file and never to a stream.
+  process.removeAllListeners('warning')
   process.on('warning', (warning) => record('warning', warning))
   process.on('uncaughtExceptionMonitor', (error) => record('uncaught', error))
 }

@@ -28,9 +28,10 @@ Other scripts:
 | `npm run capture` | Screenshots the built app's windows into `.impeccable/review/` |
 | `npm run dist` | Packages installers into `dist/` (`dist:mac`, `dist:win`, `dist:linux`) |
 
-macOS note: Touch ID is only offered to a code-signed app. Set
-`CSC_IDENTITY_AUTO_DISCOVERY=true` (or sign the built app yourself) or biometric
-unlock will be refused by the system.
+macOS note: `dist:mac` signs with the "Developer ID Application" certificate
+in your keychain and fails without one; Touch ID is only offered to a signed
+app. Set `APPLE_API_KEY`, `APPLE_API_KEY_ID` and `APPLE_API_ISSUER` to have it
+notarized as well. Releases built by CI are signed and notarized.
 
 ---
 
