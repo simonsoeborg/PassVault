@@ -2,10 +2,14 @@
 # a GitHub release. Pushing a tag like v0.1.0-rc.1 (anything with a hyphen)
 # publishes a pre-release; a plain v0.1.0 publishes a full release.
 #
-# Builds are unsigned. macOS gets an ad-hoc signature so it runs on Apple
-# Silicon, but Gatekeeper and Touch ID still need a real Developer ID. Ad-hoc
-# code has no Team ID, so these builds use entitlements.mac.adhoc.plist,
-# which turns off library validation; a Developer ID build should not.
+# macOS builds are signed with a Developer ID and notarized by Apple, so
+# Gatekeeper opens them and Touch ID works. Windows and Linux are unsigned.
+#
+# The release is created as a DRAFT first, each build uploads its own files
+# into it, and it is published last. Nothing goes through workflow artifacts:
+# their storage quota is shared by every private repo on the account, and one
+# run of installers is most of a gigabyte. A draft also means nobody can
+# download a release that only has some of its platforms yet.
 
 name: Release
 
@@ -24,10 +28,35 @@ permissions:
 
 env:
   TAG: ${{ github.event.inputs.tag || github.ref_name }}
+  GH_REPO: ${{ github.repository }}
 
 jobs:
+  draft:
+    name: Create draft release
+    runs-on: ubuntu-latest
+    steps:
+      # Created here, once, rather than by the build jobs, which would race to
+      # create the same release. A rerun for an existing tag reuses it.
+      - name: Create the release as a draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; reusing it."
+          else
+            prerelease=""
+            [[ "$TAG" == *-* ]] && prerelease="--prerelease"
+            gh release create "$TAG" \
+              --draft \
+              --verify-tag \
+              --title "PassVault ${TAG#v}" \
+              --generate-notes \
+              $prerelease
+          fi
+
   build:
     name: Build (${{ matrix.name }})
+    needs: draft
     strategy:
       fail-fast: false
       matrix:
@@ -37,7 +66,7 @@ jobs:
             dist: --linux --x64
           - name: macos
             os: macos-latest
-            dist: --mac --arm64 --x64 --config.mac.identity=- --config.mac.entitlements=build/entitlements.mac.adhoc.plist --config.mac.entitlementsInherit=build/entitlements.mac.adhoc.plist
+            dist: --mac --arm64 --x64
           - name: windows
             os: windows-latest
             dist: --win --x64
@@ -83,19 +112,103 @@ jobs:
           name: smoke-failure-${{ matrix.name }}
           path: ${{ runner.temp }}/smoke
           if-no-files-found: ignore
+          retention-days: 7
+
+      # The certificate goes into a keychain this job creates, and
+      # electron-builder is pointed at it with CSC_KEYCHAIN rather than given
+      # CSC_LINK. electron-builder 26.15 unlocks its own keychain with the
+      # certificate's password after importing a .p12, which fails with
+      # "SecKeychainUnlock: The user name or passphrase you entered is not
+      # correct". This is GitHub's own recipe and does not depend on it.
+      #
+      # A missing or malformed secret stops the job here. notarytool only says
+      # "401 Unauthenticated", which does not say which of the three is wrong.
+      - name: Prepare Apple signing
+        if: runner.os == 'macOS'
+        env:
+          MAC_CERTS_P12: ${{ secrets.MAC_CERTS_P12 }}
+          MAC_CERTS_PASSWORD: ${{ secrets.MAC_CERTS_PASSWORD }}
+          APPLE_API_KEY_P8: ${{ secrets.APPLE_API_KEY_P8 }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+        run: |
+          missing=()
+          for name in MAC_CERTS_P12 MAC_CERTS_PASSWORD APPLE_API_KEY_P8 APPLE_API_KEY_ID APPLE_API_ISSUER; do
+            [ -n "${!name}" ] || missing+=("$name")
+          done
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "::error::Missing repository secrets for macOS signing: ${missing[*]}"
+            exit 1
+          fi
+
+          cert="$RUNNER_TEMP/developer-id.p12"
+          printf '%s' "$MAC_CERTS_P12" | base64 --decode > "$cert"
+
+          keychain="$RUNNER_TEMP/signing.keychain-db"
+          keychain_password="$(openssl rand -base64 32)"
+          security create-keychain -p "$keychain_password" "$keychain"
+          # Relock after six hours, not on sleep: longer than any job, so it
+          # does not lock itself in the middle of notarization.
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$keychain_password" "$keychain"
+          security import "$cert" -k "$keychain" -f pkcs12 \
+            -P "$MAC_CERTS_PASSWORD" -T /usr/bin/codesign -T /usr/bin/security
+          # Without this, codesign asks for permission in a dialog nobody sees.
+          security set-key-partition-list -S apple-tool:,apple: -s \
+            -k "$keychain_password" "$keychain" >/dev/null
+          security list-keychains -d user -s "$keychain" \
+            $(security list-keychains -d user | tr -d '"')
+          rm -f "$cert"
+
+          if ! security find-identity -v -p codesigning "$keychain" | grep -q 'Developer ID Application'; then
+            echo "::error::MAC_CERTS_P12 holds no 'Developer ID Application' certificate."
+            exit 1
+          fi
+
+          # An ID pasted with a trailing space or newline looks right in
+          # GitHub and gets a bare 401 from Apple.
+          APPLE_API_KEY_ID="$(printf '%s' "$APPLE_API_KEY_ID" | tr -d '[:space:]')"
+          APPLE_API_ISSUER="$(printf '%s' "$APPLE_API_ISSUER" | tr -d '[:space:]')"
+          if ! [[ "$APPLE_API_ISSUER" =~ ^[0-9a-fA-F-]{36}$ ]]; then
+            echo "::error::APPLE_API_ISSUER is not an Issuer ID (a UUID). The Team ID is something else."
+            exit 1
+          fi
+
+          api_key="$RUNNER_TEMP/apple-api-key.p8"
+          printf '%s\n' "$APPLE_API_KEY_P8" > "$api_key"
+          if ! grep -q 'BEGIN PRIVATE KEY' "$api_key"; then
+            echo "::error::APPLE_API_KEY_P8 is not the contents of an AuthKey_*.p8 file."
+            exit 1
+          fi
+
+          {
+            echo "CSC_KEYCHAIN=$keychain"
+            echo "APPLE_API_KEY=$api_key"
+            echo "APPLE_API_KEY_ID=$APPLE_API_KEY_ID"
+            echo "APPLE_API_ISSUER=$APPLE_API_ISSUER"
+          } >> "$GITHUB_ENV"
 
       - name: Package
         run: npx electron-builder ${{ matrix.dist }} --publish never
         env:
-          CSC_IDENTITY_AUTO_DISCOVERY: false
+          # Only macOS looks for a certificate. Elsewhere electron-builder
+          # would search the Windows certificate store for one that is not
+          # there.
+          CSC_IDENTITY_AUTO_DISCOVERY: ${{ runner.os == 'macOS' }}
 
       # The smoke test runs the unpackaged app, so it cannot see signing
-      # problems; start the signed .app itself and make sure it stays up.
+      # problems; check the signature and notarization of the .app itself,
+      # then start it and make sure it stays up.
       - name: Launch packaged app (macOS)
         if: runner.os == 'macOS'
         run: |
           app=dist/mac-arm64/PassVault.app
           codesign --verify --deep --strict --verbose=2 "$app"
+          codesign -dv --verbose=2 "$app" 2>&1 | grep -E '^(Identifier|Authority=Developer ID Application|TeamIdentifier)'
+          # Gatekeeper's own verdict: must be "Notarized Developer ID".
+          spctl --assess --type execute --verbose=2 "$app" 2>&1 | tee "$RUNNER_TEMP/spctl.txt"
+          grep -q 'source=Notarized Developer ID' "$RUNNER_TEMP/spctl.txt"
+          xcrun stapler validate "$app"
           plutil -extract LSEnvironment.NODE_NO_WARNINGS raw "$app/Contents/Info.plist"
           # Start it through LaunchServices, as Finder does, not from this shell.
           open -n "$app" --args --user-data-dir="$RUNNER_TEMP/launch-check"
@@ -106,45 +219,43 @@ jobs:
           fi
           pkill -x PassVault
 
-      - uses: actions/upload-artifact@v5
-        with:
-          name: passvault-${{ matrix.name }}
-          if-no-files-found: error
-          path: |
-            dist/*.AppImage
-            dist/*.deb
-            dist/*.dmg
-            dist/*.zip
-            dist/*.exe
+      - name: Upload to the draft release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          shopt -s nullglob
+          files=(dist/*.AppImage dist/*.deb dist/*.dmg dist/*.zip dist/*.exe)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "::error::electron-builder produced no installers"
+            exit 1
+          fi
+          # GitHub renames assets with spaces, which would break the sums.
+          for f in "${files[@]}"; do
+            case "$(basename "$f")" in
+              *' '*) echo "::error::Installer names must not contain spaces: $f"; exit 1 ;;
+            esac
+          done
+          gh release upload "$TAG" "${files[@]}" --clobber
 
-  release:
+  publish:
     name: Publish release
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/download-artifact@v5
-        with:
-          path: artifacts
-          merge-multiple: true
-
+      # Summed from what is actually attached to the release, so the file
+      # people check against is the file they downloaded.
       - name: Checksums
-        working-directory: artifacts
-        # GitHub renames assets with spaces, which would break the sums.
-        run: |
-          if ls | grep -q ' '; then
-            echo "::error::Artifact names must not contain spaces:" && ls | grep ' '
-            exit 1
-          fi
-          sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
-
-      - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
         run: |
-          prerelease=""
-          [[ "$TAG" == *-* ]] && prerelease="--prerelease"
-          gh release create "$TAG" artifacts/* \
-            --title "PassVault ${TAG#v}" \
-            --generate-notes \
-            $prerelease
+          mkdir assets && cd assets
+          gh release download "$TAG" --skip-existing
+          rm -f SHA256SUMS.txt
+          sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
+          gh release upload "$TAG" SHA256SUMS.txt --clobber
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release edit "$TAG" --draft=false
